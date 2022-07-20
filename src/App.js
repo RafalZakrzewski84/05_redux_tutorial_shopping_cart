@@ -18,6 +18,10 @@ function App() {
 		//used for action removing
 		dispatch({ type: 'REM' });
 	};
+	const addTen = () => {
+		//used for action add10
+		dispatch({ type: 'add10', payload: 10 });
+	};
 
 	return (
 		<div className="App">
@@ -25,6 +29,7 @@ function App() {
 			<h2>{counter}</h2>
 			<button onClick={add}>Add one</button>
 			<button onClick={remove}>Remove one</button>
+			<button onClick={addTen}>Add 10</button>
 		</div>
 	);
 }
