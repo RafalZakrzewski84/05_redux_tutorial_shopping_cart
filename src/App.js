@@ -1,6 +1,7 @@
 /** @format */
 
 import { useSelector, useDispatch } from 'react-redux';
+import { actions } from './store/index';
 import './App.css';
 
 function App() {
@@ -12,15 +13,15 @@ function App() {
 	//action defined in store/index.js
 	const add = () => {
 		//used for action adding
-		dispatch({ type: 'ADD' });
+		dispatch(actions.add());
 	};
 	const remove = () => {
 		//used for action removing
-		dispatch({ type: 'REM' });
+		dispatch(actions.remove());
 	};
 	const addTen = () => {
-		//used for action add10
-		dispatch({ type: 'add10', payload: 10 });
+		//used for action add10 - (10) is payload in reducers
+		dispatch(actions.addTen(10));
 	};
 
 	return (

@@ -10,7 +10,7 @@ import store from './store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	// provider component for using store
+	// provider component for using state
 	<Provider store={store}>
 		<React.StrictMode>
 			<App />
