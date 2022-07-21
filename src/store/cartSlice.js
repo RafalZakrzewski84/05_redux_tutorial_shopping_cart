@@ -19,7 +19,7 @@ const cartSlice = createSlice({
 			if (cartItem) {
 				//if newItem in cart increase qut nad price
 				cartItem.quantity++;
-				cartItem.price += newItem.price;
+				cartItem.totalPrice += newItem.price;
 			} else {
 				//if not add newItem to cart list
 				state.itemList.push({
@@ -30,6 +30,7 @@ const cartSlice = createSlice({
 					name: newItem.name,
 				});
 			}
+			state.totalQuantity++;
 		},
 		removeFromCart(state, action) {},
 		setShowCart(state) {
