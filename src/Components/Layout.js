@@ -7,7 +7,14 @@ import Products from './Products';
 import CartItems from './CartItems';
 import './Layout.css';
 const Layout = () => {
-	const total = useSelector((state) => state.cart.totalQuantity);
+	let total = 0;
+
+	//for showing total price in cart
+	const cartList = useSelector((state) => state.cart.itemList);
+	cartList.forEach((item) => {
+		total += item.totalPrice;
+	});
+
 	const showCart = useSelector((state) => state.cart.showCart);
 
 	return (
