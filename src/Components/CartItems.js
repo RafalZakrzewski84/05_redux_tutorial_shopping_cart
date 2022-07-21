@@ -6,9 +6,10 @@ import CartItem from './CartItem';
 import './Cart.css';
 const CartItems = () => {
 	const cartList = useSelector((state) => state.cart.itemList);
+	const total = useSelector((state) => state.cart.totalQuantity);
 	return (
 		<div className="cart-container">
-			<h2>Your Cart</h2>
+			{total === 0 ? <h2>Your Cart Is Empty</h2> : <h2>Your Cart</h2>}
 			<ul>
 				{cartList.map((item, idx) => {
 					return (
