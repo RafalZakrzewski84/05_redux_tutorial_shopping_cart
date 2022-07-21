@@ -7,6 +7,8 @@ import { cartActions } from '../store/cartSlice';
 import './Product.css';
 const Product = ({ name, id, imgURL, price }) => {
 	const dispatch = useDispatch();
+
+	//function for adding product to cart
 	const addToCart = () => {
 		dispatch(
 			cartActions.addToCart({
