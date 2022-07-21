@@ -11,7 +11,7 @@ function Auth() {
 				<label htmlFor="username">Username</label>
 				<input type="text" name="username" id="username" />
 				<label htmlFor="password">Password</label>
-				<input type="password" name="password" id="username" />
+				<input type="password" name="password" id="password" />
 				<button className="Auth-btn">Login</button>
 			</form>
 		</div>
