@@ -34,7 +34,8 @@ const cartSlice = createSlice({
 		},
 		removeFromCart(state, action) {},
 		setShowCart(state) {
-			state.showCart = true;
+			//action will toggle state of showCart variable
+			state.showCart = !state.showCart;
 		},
 	},
 });
