@@ -30,9 +30,26 @@ const cartSlice = createSlice({
 					name: newItem.name,
 				});
 			}
+			//increasing total num of products in cart
 			state.totalQuantity++;
 		},
-		removeFromCart(state, action) {},
+		removeFromCart(state, action) {
+			//checking which item to modify by product id
+			const id = action.payload;
+			//choosing item from itemList
+			const cartItem = state.itemList.find((item) => item.id === id);
+
+			if (cartItem.quantity > 1) {
+				//if more than one remove one product and decrease total price
+				cartItem.quantity--;
+				cartItem.totalPrice -= cartItem.price;
+			} else if (cartItem.quantity === 1) {
+				//if only one product generate new item list with out removed product
+				state.itemList = state.itemList.filter((item) => item.id !== id);
+			}
+			//decreasing total num of products in cart
+			state.totalQuantity--;
+		},
 		setShowCart(state) {
 			//action will toggle state of showCart variable
 			state.showCart = !state.showCart;
