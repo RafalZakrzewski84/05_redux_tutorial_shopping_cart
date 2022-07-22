@@ -25,6 +25,7 @@ function App() {
 
 	//effect will be induce in case of cart state change
 	React.useEffect(() => {
+		//doesn't work sth is causing change of cart and start fetching
 		if (isFirstRendered) {
 			isFirstRendered = false;
 			console.log(isFirstRendered);

@@ -21,7 +21,7 @@ const Notification = ({ type, msg }) => {
 
 	return (
 		<div>
-			//showing alert when changing state of ui notification.open
+			{/* showing alert when changing state of ui notification.open */}
 			{notification.open && (
 				<Alert onClick={closeHandler} severity={type}>
 					{msg}
