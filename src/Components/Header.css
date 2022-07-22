@@ -12,5 +12,15 @@
 }
 .header-h2 {
 	font-family: monospace;
-	font-size: 30px;
+	font-size: 15px;
+}
+
+.header-btn {
+	padding: 10px;
+	background-color: orange;
+	border: none;
+}
+
+.header-btn:hover {
+	background-color: skyblue;
 }
