@@ -1,5 +1,6 @@
 /** @format */
 
+import * as React from 'react';
 import { useSelector } from 'react-redux';
 import './App.css';
 
@@ -8,9 +9,9 @@ import Layout from './Components/Layout';
 
 function App() {
 	//initial state of auth.isLoggedIn from store from authSlice - will be false
+	//we have to log in
 	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-	const cartItems = useSelector((state) => state.cart.itemList);
-	console.log(cartItems);
+
 	return (
 		<div className="App">
 			{!isLoggedIn && <Auth />}
