@@ -1,7 +1,6 @@
 /** @format */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { uiActions } from './uiSlice';
 
 //creating state for cart
 const cartSlice = createSlice({
@@ -10,12 +9,23 @@ const cartSlice = createSlice({
 		itemList: [],
 		totalQuantity: 0,
 		showCart: false,
+		changed: false,
 	},
 	reducers: {
+		//replace cart content by fetched data
+		//action used cartActions, fetchCartData fn
+		replaceCartData(state, action) {
+			state.totalQuantity = action.payload.totalQuantity;
+			state.itemList = action.payload.itemList;
+		},
+
 		addToCart(state, action) {
+			state.changed = true;
 			const newItem = action.payload;
 			//checking if newItem is in cart
-			const cartItem = state.itemList.find((item) => item.id === newItem.id);
+			const cartItem = state.itemList
+				? state.itemList.find((item) => item.id === newItem.id)
+				: [];
 
 			if (cartItem) {
 				//if newItem in cart increase qut nad price
@@ -35,6 +45,7 @@ const cartSlice = createSlice({
 			state.totalQuantity++;
 		},
 		removeFromCart(state, action) {
+			state.changed = true;
 			//checking which item to modify by product id
 			const id = action.payload;
 			//choosing item from itemList
@@ -57,50 +68,6 @@ const cartSlice = createSlice({
 		},
 	},
 });
-
-export const sendCartData = (cart) => {
-	return async (dispatch) => {
-		//ui in uiSlice - state before sending data
-		dispatch(
-			uiActions.showNotification({
-				open: true,
-				msg: 'Sending order...',
-				type: 'warning',
-			})
-		);
-		const sendRequestToFB = async () => {
-			const res =
-				//connecting to firebase db for sending cart in json file
-				await fetch(
-					'https://sdanews-acd6d-default-rtdb.europe-west1.firebasedatabase.app/cartItems.json',
-					{
-						method: 'PUT',
-						body: JSON.stringify(cart),
-					}
-				);
-			const data = await res.json();
-			// ui in uiSlice - state after successful putting data
-			dispatch(
-				uiActions.showNotification({
-					open: true,
-					msg: 'Data in database',
-					type: 'success',
-				})
-			);
-		};
-		try {
-			await sendRequestToFB();
-		} catch (e) {
-			dispatch(
-				uiActions.showNotification({
-					open: true,
-					msg: 'Something went wrong',
-					type: 'error',
-				})
-			);
-		}
-	};
-};
 
 export const cartActions = cartSlice.actions;
 export default cartSlice;
