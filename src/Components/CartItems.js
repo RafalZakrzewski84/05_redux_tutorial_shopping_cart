@@ -11,19 +11,20 @@ const CartItems = () => {
 		<div className="cart-container">
 			{total === 0 ? <h2>Your Cart Is Empty</h2> : <h2>Your Cart</h2>}
 			<ul>
-				{cartList.map((item, idx) => {
-					return (
-						<li key={idx}>
-							<CartItem
-								id={item.id}
-								price={item.price}
-								name={item.name}
-								quantity={item.quantity}
-								total={item.totalPrice}
-							/>
-						</li>
-					);
-				})}
+				{cartList &&
+					cartList.map((item, idx) => {
+						return (
+							<li key={idx}>
+								<CartItem
+									id={item.id}
+									price={item.price}
+									name={item.name}
+									quantity={item.quantity}
+									total={item.totalPrice}
+								/>
+							</li>
+						);
+					})}
 			</ul>
 		</div>
 	);
