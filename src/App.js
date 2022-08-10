@@ -8,7 +8,7 @@ import './App.css';
 import Auth from './Components/Auth';
 import Layout from './Components/Layout';
 import Notification from './Components/Notification';
-import { sendCartData } from './store/cartSlice';
+import { fetchCartData, sendCartData } from './store/cartActions';
 
 let isFirstRendered = true;
 console.log(isFirstRendered);
@@ -25,6 +25,12 @@ function App() {
 	const cart = useSelector((state) => state.cart);
 	console.log(cart);
 
+	//for fetching data from firebase db and replacing cart content
+	//fetch in cartActions replacing using replace action
+	React.useEffect(() => {
+		dispatch(fetchCartData());
+	}, [dispatch]);
+
 	//effect will be induce in case of cart state change
 	React.useEffect(() => {
 		//doesn't work sth is causing change of cart and start fetching
@@ -34,9 +40,10 @@ function App() {
 			console.log(isFirstRendered);
 			return;
 		}
-
-		//function for fetching declared in certSlice
-		dispatch(sendCartData(cart));
+		if (cart.changed) {
+			//function for fetching declared in certSlice
+			dispatch(sendCartData(cart));
+		}
 	}, [cart, dispatch]);
 
 	return (
