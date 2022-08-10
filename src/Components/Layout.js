@@ -11,9 +11,11 @@ const Layout = () => {
 
 	//for showing total price in cart
 	const cartList = useSelector((state) => state.cart.itemList);
-	cartList.forEach((item) => {
-		total += item.totalPrice;
-	});
+
+	cartList &&
+		cartList.forEach((item) => {
+			total += item.totalPrice;
+		});
 
 	const showCart = useSelector((state) => state.cart.showCart);
 
